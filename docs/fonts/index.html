@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>コーディング用フォントの紹介</section>
+				<section>
+					<a href="https://github.com/adobe-fonts/source-han-code-jp">Source Han Code JP</a><br><br>
+					<ul>
+						<li>欧文: Source Code Pro</li>
+						<li>和文: 源ノ角ゴシック</li>
+						<li>Adobe製</li>
+					</ul>
+				</section>
+				<section>
+					<a href="https://github.com/MasayukiFukada/CodeMFont">CodeM</a><br><br>
+					<ul>
+						<li>欧文: Source Code Pro</li>
+						<li>和文: M+ Font</li>
+					</ul>
+				</section>
+				<section>
+					<a href="https://github.com/tomokuni/Myrica">Myrica</a><br><br>
+					<ul>
+						<li>欧文: Inconsolata</li>
+						<li>和文: 源ノ角ゴシック</li>
+						<li>Ricty(後述)の特徴を継承している</li>
+						<li>ヒンティング有効</li>
+					</ul>
+				</section>
+				<section>
+					<section>
+						<a href="http://www.rs.tus.ac.jp/yyusa/ricty.html">Ricty</a><br><br>
+						<ul>
+							<li>欧文: Inconsolata</li>
+							<li>和文: M+ Font</li>
+							<li>全角スペースの可視化</li>
+							<li>ライセンス的にインストールが面倒</li>
+						</ul>
+					</section>
+					<section>
+						<a href="https://github.com/edihbrandon/RictyDiminished">Ricty Diminished</a><br><br>
+						<ul>
+							<li>Rictyの配布が簡単になったバージョン</li>
+						</ul>
+					</section>
+					<section>
+						Ricty Diminished Discord<br><br>
+						<ul>
+							<li>0（ゼロ）がスラッシュかドットか</li>
+							<li>DやZにクロスバーがあるかどうか</li>
+							<li>l(エル)と間違いの多い|(パイプ)が棒か破線か</li>
+							<li>r（アール）やl(エル)などのデザイン</li>
+						</ul>
+					</section>
+					<section>
+						<a href="https://www.firstlogic.co.jp/blog/lab/yagi/2159" target="_blank">ここに画像あった</a>
+					</section>
+				</section>
+				<section>
+					インストール方法
+				</section>
+				<section>
+					<section>
+						Homebrew
+						<pre><code>$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code></pre>
+						brew-cask
+						<pre><code>$ brew install caskroom/cask/brew-cask</code></pre>
+					</section>
+					<section>
+						フォント一覧
+						<pre><code>$ brew cask search /font/</code></pre>
+						欲しいフォントがあるか探す
+						<pre><code>$ brew cask search /font/ | grep ricty</code></pre>
+						インストール
+						<pre><code>$ brew cask install font-ricty-diminished</code></pre>
+					</section>
+				</section>
+				<section>
+					<p>Sublime Textの設定</p>
+						<pre><code>{
+    "font_face": "Ricty Diminished Discord",
+    "font_size": 16,
+}</code></pre>
+				</section>
+				<section>
+					<section>
+						GitHubのレビュー時にフォントを指定するには<a href="https://chrome.google.com/webstore/detail/stylish/fjnbnpbmkenffdnngjfgmeleoegfcffe?hl=ja">Chrome拡張</a>を使ってCSSを上書きする
+						<pre><code>.blob-code-inner {
+    font-family: "Ricty Diminished Discord", Ricty, Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+    font-size: 14px !important;
+}
+</code></pre>
+					</section>
+				</section>
+				<section>
+					Ricty Diminished Discordで<a href="https://github.com/hosoyama-mediba/shibainu/pull/1/files" target="_blank">レビューしてみる</a>
+				</section>
+				<section>
+					Thanks
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
