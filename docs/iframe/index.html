@@ -7,37 +7,49 @@
     $(function() {
         setTimeout(function() {
             var v1_1 = document.createElement('iframe');
-            v1_1.width = 560;
-            v1_1.height = 315;
+            v1_1.width = 560 / 2;
+            v1_1.height = 315 / 2;
             v1_1.src = 'https://www.youtube.com/embed/xzqhDc8dz28';
             document.querySelector('#v1_1').appendChild(v1_1);
 
             var v1_2 = v1_1.cloneNode();
-            v1_2.name = 'v1_2';
+            v1_2.name = 'common';
             document.querySelector('#v1_2').appendChild(v1_2);
 
+            var v1_3 = v1_1.cloneNode();
+            v1_3.name = 'v1_3';
+            document.querySelector('#v1_3').appendChild(v1_3);
+
             var v2_1 = document.createElement('iframe');
-            v2_1.width = 560;
-            v2_1.height = 315;
+            v2_1.width = 560 / 2;
+            v2_1.height = 315 / 2;
             v2_1.src = 'https://www.youtube.com/embed/c2ivYqToCLQ';
             document.querySelector('#v2_1').appendChild(v2_1);
 
             var v2_2 = v2_1.cloneNode();
-            v2_2.name = 'v2_2';
+            v2_2.name = 'common';
             document.querySelector('#v2_2').appendChild(v2_2);
+
+            var v2_3 = v2_1.cloneNode();
+            v2_3.name = 'v2_3';
+            document.querySelector('#v2_3').appendChild(v2_3);
         }, 500);
     });
     $(window).on('load', function() {
         var v3_1 = document.createElement('iframe');
-        v3_1.width = 560;
-        v3_1.height = 315;
+        v3_1.width = 560 / 2;
+        v3_1.height = 315 / 2;
         v3_1.src = 'https://www.youtube.com/embed/IXBD_Ex4h8Y';
         document.querySelector('#v3_1').appendChild(v3_1);
 
         var v3_2 = v3_1.cloneNode();
-        v3_2.name = 'v3_2';
+        v3_2.name = 'common';
         document.querySelector('#v3_2').appendChild(v3_2);
-    });
+
+        var v3_3 = v3_1.cloneNode();
+        v3_3.name = 'v3_3';
+        document.querySelector('#v3_3').appendChild(v3_3);
+        });
 </script>
 </head>
 <body>
@@ -46,7 +58,8 @@
             <tr>
                 <th></th>
                 <th>nameなし</td>
-                <th>nameあり</td>
+                <th>name共通</td>
+                <th>nameユニーク</td>
             </tr>
         </thead>
         <tbody>
@@ -54,16 +67,19 @@
                 <th>1:ホンダ</th>
                 <td id="v1_1"></td>
                 <td id="v1_2"></td>
+                <td id="v1_3"></td>
             </tr>
             <tr>
                 <th>2:スイカ</th>
                 <td id="v2_1"></td>
                 <td id="v2_2"></td>
+                <td id="v2_3"></td>
             </tr>
             <tr>
                 <th>3:マック</th>
                 <td id="v3_1"></td>
                 <td id="v3_2"></td>
+                <td id="v3_3"></td>
             </tr>
         </tbody>
     </table>
