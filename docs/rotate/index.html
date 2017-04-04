@@ -6,30 +6,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.string/3.3.4/underscore.string.js"></script>
+    <link rel="stylesheet" href="./style.css">
     <style>
         * {
             margin: 0;
             padding: 0;
         }
         li {
+            margin-left: 2em;
             list-style: none;
             font-family: monospace;
         }
-        #logs {
+        .logs {
             font-size: 10px;
             line-height: 1.5;
+        }
+        .log {
+            padding: 5px;
+        }
+        .new {
+            background-color: #fce;
         }
     </style>
     <script>
     $(function() {
         _.mixin(s.exports());
 
+        let timer = null;
+
         const $window = $(window);
-        const $logs = $('#logs');
+        const $logs = $('.logs');
+        const $tabInner = $('.js-news__tab-inner');
         const func = (e) => {
-            $logs.append($('<li/>')
-                .html($('<pre/>').html(`${_.sprintf('%17s', e.type)}: width:${$window.width()} height:${$window.height()}`))
-            );
+            const $div = $('<div/>').addClass('log new');
+            const $ul = $('<ul/>');
+
+            $ul.append($('<li/>').html(`width:${$window.width()}, height:${$window.height()}`));
+            $ul.append($('<li/>').html(`tabwidth:${$tabInner.width()}, height:${$tabInner.height()}`));
+            $div.append($('<h3/>').html(e.type));
+            $div.append($ul);
+            $logs.append($div);
+            $('body').scrollTop($(document).height());
+
+            if (!timer) {
+                $('.log').not(':last').removeClass('new');
+                timer = setTimeout(function() {
+                    timer = null;
+                }, 500);
+            }
         };
 
         func({ type: 'init' });
@@ -39,8 +63,26 @@
     });
 </script>
 </head>
-<body>
-    <ul id="logs">
-    </ul>
+<body class="news__tab-fix">
+
+    <section class="js-news news">
+        <div class="js-news__tab-wrapper news__tab-wrapper">
+            <div class="js-news__tab news__tab">
+                <div class="js-news__tab-inner news__tab-inner">
+                    <ul class="js-news__tab-items news__tab-items">
+                        <li class="js-news__tab-item news__tab-item">1</li>
+                        <li class="js-news__tab-item news__tab-item">2</li>
+                        <li class="js-news__tab-item news__tab-item">3</li>
+                        <li class="js-news__tab-item news__tab-item">4</li>
+                        <li class="js-news__tab-item news__tab-item">5</li>
+                    </ul>
+                    <div class="js-news__tab--active-marker news__tab--active-marker"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="logs">
+    </div>
 </body>
 </html>
