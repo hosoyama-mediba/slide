@@ -70,10 +70,13 @@
                 $ul.append($('<li/>').html(`fixedTabWidth:${$fixedTabInner.width()}, fixedTabHeight:${$fixedTabInner.height()} (after 400ms)`));
             }, 400);
 
+            setTimeout(function() {
+                $ul.append($('<li/>').html(`fixedTabWidth:${$fixedTabInner.width()}, fixedTabHeight:${$fixedTabInner.height()} (after 500ms)`));
+            }, 500);
+
             if (!timer) {
                 $('.log').not(':last').removeClass('new');
                 timer = setTimeout(function() {
-                    $ul.append($('<li/>').html(`fixedTabWidth:${$fixedTabInner.width()}, fixedTabHeight:${$fixedTabInner.height()} (after 500ms)`));
                     $('body').scrollTop($(document).height());
                     timer = null;
                 }, 500);
