@@ -50,8 +50,11 @@
         var $staticTabInner = $('.news__tab-wrapper--static .news__tab-inner');
         var func = (e) => {
             // 一回absoluteにして更新させる
-            $fixedTabWrapper.css('position', 'absolute');
-            $fixedTabWrapper.css('position', 'fixed');
+            if (e.type === 'resize') {
+                $fixedTabWrapper.css('position', 'absolute');
+            } else {
+                $fixedTabWrapper.css('position', 'fixed');
+            }
 
             var $div = $('<div/>').addClass('log new');
             var $ul = $('<ul/>');
