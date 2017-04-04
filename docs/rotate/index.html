@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.string/3.3.4/underscore.string.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        #logs {
+            font-size: 10px;
+            line-height: 1.5;
+        }
+    </style>
+    <script>
+    $(function() {
+        _.mixin(s.exports());
+
+        const $window = $(window);
+        const $logs = $('#logs');
+        const func = (e) => {
+            $logs.append($('<li/>')
+                .html($('<pre/>').html(`${_.sprintf('%17s', e.type)}: width:${$window.width()} height:${$window.height()}`))
+            );
+        };
+
+        func({ type: 'init' });
+
+        $window.on('resize', func);
+        $window.on('orientationchange', func);
+    });
+</script>
+</head>
+<body>
+    <ul id="logs">
+    </ul>
+</body>
+</html>
