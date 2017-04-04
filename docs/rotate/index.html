@@ -35,14 +35,16 @@
         let timer = null;
 
         const $window = $(window);
+        const $document = $(document);
         const $logs = $('.logs');
         const $tabInner = $('.js-news__tab-inner');
         const func = (e) => {
             const $div = $('<div/>').addClass('log new');
             const $ul = $('<ul/>');
 
-            $ul.append($('<li/>').html(`width:${$window.width()}, height:${$window.height()}`));
-            $ul.append($('<li/>').html(`tabwidth:${$tabInner.width()}, height:${$tabInner.height()}`));
+            $ul.append($('<li/>').html(`windowWidth:${$window.width()}, windowHeight:${$window.height()}`));
+            $ul.append($('<li/>').html(`documentWidth:${$document.width()}, documentHeight:${$document.height()}`));
+            $ul.append($('<li/>').html(`tabWidth:${$tabInner.width()}, tabHeight:${$tabInner.height()}`));
             $div.append($('<h3/>').html(e.type));
             $div.append($ul);
             $logs.append($div);
@@ -51,6 +53,7 @@
             if (!timer) {
                 $('.log').not(':last').removeClass('new');
                 timer = setTimeout(function() {
+                    $('body').scrollTop($(document).height());
                     timer = null;
                 }, 500);
             }
