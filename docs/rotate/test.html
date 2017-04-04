@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.string/3.3.4/underscore.string.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            margin-left: 2em;
+            list-style: none;
+            font-family: monospace;
+        }
+        p {
+            margin: 1em;
+        }
+        .logs {
+            font-size: 10px;
+            line-height: 1.5;
+        }
+        .log {
+            padding: 5px;
+        }
+        .new {
+            transition-duration: 0.3s;
+            transition-property: background-color;
+            background-color: #fce;
+        }
+        .news.news--static {
+            padding-top: 0;
+        }
+    </style>
+    <script>
+    $(function() {
+        _.mixin(s.exports());
+
+        var timer = null;
+
+        var $window = $(window);
+        var $document = $(document);
+        var $logs = $('.logs');
+        var $fixedTabWrapper = $('.news__tab-wrapper');
+        var $fixedTabInner = $('.news__tab-wrapper .news__tab-inner');
+        var $staticTabInner = $('.news__tab-wrapper--static .news__tab-inner');
+        var func = (e) => {
+            // 一回absoluteにして更新させる
+            $fixedTabWrapper.css('position', 'absolute');
+            $fixedTabWrapper.css('position', 'fixed');
+
+            var $div = $('<div/>').addClass('log new');
+            var $ul = $('<ul/>');
+
+            $ul.append($('<li/>').html(`windowWidth:${$window.width()}, windowHeight:${$window.height()}`));
+            $ul.append($('<li/>').html(`documentWidth:${$document.width()}, documentHeight:${$document.height()}`));
+            $ul.append($('<li/>').html(`staticTabWidth:${$staticTabInner.width()}, staticTabHeight:${$staticTabInner.height()}`));
+            $ul.append($('<li/>').html(`fixedTabWidth:${$fixedTabInner.width()}, fixedTabHeight:${$fixedTabInner.height()}`));
+            $div.append($('<h3/>').html(e.type));
+            $div.append($ul);
+            $logs.append($div);
+            $('body').scrollTop($(document).height());
+
+            setTimeout(function() {
+                $ul.append($('<li/>').html(`fixedTabWidth:${$fixedTabInner.width()}, fixedTabHeight:${$fixedTabInner.height()} (after 100ms)`));
+            }, 100);
+
+            setTimeout(function() {
+                $ul.append($('<li/>').html(` fixedTabWidth:${$fixedTabInner.width()}, fixedTabHeight:${$fixedTabInner.height()} (after 200ms)`));
+            }, 200);
+
+            setTimeout(function() {
+                $ul.append($('<li/>').html(`fixedTabWidth:${$fixedTabInner.width()}, fixedTabHeight:${$fixedTabInner.height()} (after 300ms)`));
+            }, 300);
+
+            setTimeout(function() {
+                $ul.append($('<li/>').html(`fixedTabWidth:${$fixedTabInner.width()}, fixedTabHeight:${$fixedTabInner.height()} (after 400ms)`));
+            }, 400);
+
+            setTimeout(function() {
+                $ul.append($('<li/>').html(`fixedTabWidth:${$fixedTabInner.width()}, fixedTabHeight:${$fixedTabInner.height()} (after 500ms)`));
+            }, 500);
+
+            if (!timer) {
+                $('.log').not(':last').removeClass('new');
+                timer = setTimeout(function() {
+                    $('body').scrollTop($(document).height());
+                    timer = null;
+                }, 600);
+            }
+        };
+
+        func({ type: 'init' });
+
+        $window.on('resize', func);
+        $window.on('orientationchange', func);
+    });
+</script>
+</head>
+<body class="news__tab-fix">
+
+    <section class="news">
+        <div class="news__tab-wrapper">
+            <div class="news__tab">
+                <div class="news__tab-inner">
+                    <ul class="news__tab-items">
+                        <li class="news__tab-item">1</li>
+                        <li class="news__tab-item">2</li>
+                        <li class="news__tab-item">3</li>
+                        <li class="news__tab-item">4</li>
+                        <li class="news__tab-item">5</li>
+                    </ul>
+                    <div class="news__tab--active-marker"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <p>上のタブはposition:fixed。下のタブはposition:static。</p>
+    <p>resizeとorientationchangeイベント発火時にログ出力して下部にスクロールします。</p>
+    <p>OS、ブラウザ、ブラウザのバージョン、ランドスケープ時、ポートレート時によって発火の順番とローテート時のドキュメントのサイズ取得値に差異があるので注意。</p>
+
+    <section class="news news--static">
+        <div class="news__tab-wrapper--static">
+            <div class="news__tab">
+                <div class="news__tab-inner">
+                    <ul class="news__tab-items">
+                        <li class="news__tab-item">1</li>
+                        <li class="news__tab-item">2</li>
+                        <li class="news__tab-item">3</li>
+                        <li class="news__tab-item">4</li>
+                        <li class="news__tab-item">5</li>
+                    </ul>
+                    <div class="news__tab--active-marker"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="logs">
+    </div>
+</body>
+</html>
