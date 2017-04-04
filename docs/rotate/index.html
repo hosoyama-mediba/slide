@@ -17,6 +17,9 @@
             list-style: none;
             font-family: monospace;
         }
+        p {
+            margin: 1em;
+        }
         .logs {
             font-size: 10px;
             line-height: 1.5;
@@ -28,6 +31,9 @@
             transition-duration: 0.3s;
             transition-property: background-color;
             background-color: #fce;
+        }
+        .news.news--static {
+            padding-top: 0;
         }
     </style>
     <script>
@@ -79,7 +85,7 @@
                 timer = setTimeout(function() {
                     $('body').scrollTop($(document).height());
                     timer = null;
-                }, 500);
+                }, 600);
             }
         };
 
@@ -109,8 +115,10 @@
         </div>
     </section>
 
-    <section class="news">
-        position: static
+    <p>上のタブはposition:fixed。下のタブはposition:static。</p>
+    <p>resizeとorientationchangeイベント発火時にログ出力して下部にスクロールします。</p>
+
+    <section class="news news--static">
         <div class="news__tab-wrapper--static">
             <div class="news__tab">
                 <div class="news__tab-inner">
