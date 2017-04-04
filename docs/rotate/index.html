@@ -25,6 +25,8 @@
             padding: 5px;
         }
         .new {
+            transition-duration: 0.3s;
+            transition-property: background-color;
             background-color: #fce;
         }
     </style>
@@ -37,14 +39,16 @@
         const $window = $(window);
         const $document = $(document);
         const $logs = $('.logs');
-        const $tabInner = $('.js-news__tab-inner');
+        const $fixedTabInner = $('.news__tab-wrapper .news__tab-inner');
+        const $staticTabInner = $('.news__tab-wrapper--static .news__tab-inner');
         const func = (e) => {
             const $div = $('<div/>').addClass('log new');
             const $ul = $('<ul/>');
 
             $ul.append($('<li/>').html(`windowWidth:${$window.width()}, windowHeight:${$window.height()}`));
             $ul.append($('<li/>').html(`documentWidth:${$document.width()}, documentHeight:${$document.height()}`));
-            $ul.append($('<li/>').html(`tabWidth:${$tabInner.width()}, tabHeight:${$tabInner.height()}`));
+            $ul.append($('<li/>').html(`fixedTabWidth:${$fixedTabInner.width()}, fixedTabHeight:${$fixedTabInner.height()}`));
+            $ul.append($('<li/>').html(`staticTabWidth:${$staticTabInner.width()}, staticTabHeight:${$staticTabInner.height()}`));
             $div.append($('<h3/>').html(e.type));
             $div.append($ul);
             $logs.append($div);
@@ -68,18 +72,36 @@
 </head>
 <body class="news__tab-fix">
 
-    <section class="js-news news">
-        <div class="js-news__tab-wrapper news__tab-wrapper">
-            <div class="js-news__tab news__tab">
-                <div class="js-news__tab-inner news__tab-inner">
-                    <ul class="js-news__tab-items news__tab-items">
-                        <li class="js-news__tab-item news__tab-item">1</li>
-                        <li class="js-news__tab-item news__tab-item">2</li>
-                        <li class="js-news__tab-item news__tab-item">3</li>
-                        <li class="js-news__tab-item news__tab-item">4</li>
-                        <li class="js-news__tab-item news__tab-item">5</li>
+    <section class="news">
+        <div class="news__tab-wrapper">
+            <div class="news__tab">
+                <div class="news__tab-inner">
+                    <ul class="news__tab-items">
+                        <li class="news__tab-item">1</li>
+                        <li class="news__tab-item">2</li>
+                        <li class="news__tab-item">3</li>
+                        <li class="news__tab-item">4</li>
+                        <li class="news__tab-item">5</li>
                     </ul>
-                    <div class="js-news__tab--active-marker news__tab--active-marker"></div>
+                    <div class="news__tab--active-marker"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news">
+        position: static
+        <div class="news__tab-wrapper--static">
+            <div class="news__tab">
+                <div class="news__tab-inner">
+                    <ul class="news__tab-items">
+                        <li class="news__tab-item">1</li>
+                        <li class="news__tab-item">2</li>
+                        <li class="news__tab-item">3</li>
+                        <li class="news__tab-item">4</li>
+                        <li class="news__tab-item">5</li>
+                    </ul>
+                    <div class="news__tab--active-marker"></div>
                 </div>
             </div>
         </div>

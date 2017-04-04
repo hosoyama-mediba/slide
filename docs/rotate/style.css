@@ -1257,6 +1257,16 @@ a:visited {
     display: none
 }
 
+.news__tab-wrapper--static {
+    width: 100%;
+    overflow: auto;
+    z-index: 9
+}
+
+.news__tab-wrapper--static::-webkit-scrollbar {
+    display: none
+}
+
 .news__tab {
     width: 100%;
     overflow-y: hidden;
