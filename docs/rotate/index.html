@@ -34,16 +34,16 @@
     $(function() {
         _.mixin(s.exports());
 
-        let timer = null;
+        var timer = null;
 
-        const $window = $(window);
-        const $document = $(document);
-        const $logs = $('.logs');
-        const $fixedTabInner = $('.news__tab-wrapper .news__tab-inner');
-        const $staticTabInner = $('.news__tab-wrapper--static .news__tab-inner');
-        const func = (e) => {
-            const $div = $('<div/>').addClass('log new');
-            const $ul = $('<ul/>');
+        var $window = $(window);
+        var $document = $(document);
+        var $logs = $('.logs');
+        var $fixedTabInner = $('.news__tab-wrapper .news__tab-inner');
+        var $staticTabInner = $('.news__tab-wrapper--static .news__tab-inner');
+        var func = (e) => {
+            var $div = $('<div/>').addClass('log new');
+            var $ul = $('<ul/>');
 
             $ul.append($('<li/>').html(`windowWidth:${$window.width()}, windowHeight:${$window.height()}`));
             $ul.append($('<li/>').html(`documentWidth:${$document.width()}, documentHeight:${$document.height()}`));
