@@ -22,6 +22,10 @@
             border: 1px solid #ccc;
             background-color: #eee;
         }
+        #point-area__desc {
+            text-align: center;
+            margin-top: 5em;
+        }
         #debug-area {
             list-style: none;
         }
@@ -30,8 +34,8 @@
             padding: 3px;
             top: 10px;
             right: 10px;
-            border: 1px solid #ccc;
-            background-color: #eee;
+            border: 1px solid #ccf;
+            background-color: #eef;
         }
     </style>
     <script>
@@ -76,7 +80,7 @@
 </script>
 </head>
 <body>
-<div id="point-area"></div>
+<div id="point-area"><div id="point-area__desc">ここにタッチ</div></div>
 <div id="toggle-cancel" data-cancel="0">preventDefault: OFF</div>
 <ul id="debug-area"></ul>
 </body>
