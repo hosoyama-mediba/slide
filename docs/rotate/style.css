@@ -1363,8 +1363,6 @@ a:visited {
     position: fixed;
     top: 0;
     left: 0;
-    -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.4);
-    box-shadow: 0 2px 2px rgba(0,0,0,.4)
 }
 
 .news__tab-fix .news .mynews {
