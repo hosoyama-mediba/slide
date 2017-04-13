@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-size: 10px;
+            overflow: hidden;
+        }
+        #point-area {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 50%;
+            height: 50%;
+            border: 1px solid #ccc;
+            background-color: #eee;
+        }
+        #debug-area {
+            list-style: none;
+        }
+        #toggle-cancel {
+            position: fixed;
+            padding: 3px;
+            top: 10px;
+            right: 10px;
+            border: 1px solid #ccc;
+            background-color: #eee;
+        }
+    </style>
+    <script>
+    $(function() {
+        var count = 0;
+        var $debug = $('#debug-area');
+        $debug.log = function(e) {
+            count++;
+            this.prepend($('<li/>').html(count + ' : ' + e.type));
+            $('body').scrollTop(0);
+        };
+
+        var events = [
+            'touchstart',
+            'touchcancel',
+            'touchmove',
+            'touchend',
+            'pointerdown',
+            'pointercancel',
+            'pointermove',
+            'pointerup',
+        ];
+
+        $('#point-area').on(events.join(' '), (function(e) {
+            if (Number($('#toggle-cancel').data('cancel'))) {
+                e.preventDefault();
+            }
+            $debug.log(e)
+        }));
+
+        $('#toggle-cancel').on('click', function(e) {
+            var $this = $(this);
+            if (Number($this.data('cancel'))) {
+                $this.html('preventDefault: OFF');
+                $this.data('cancel', 0);
+            } else {
+                $this.html('preventDefault: ON');
+                $this.data('cancel', 1);
+            }
+        });
+    });
+</script>
+</head>
+<body>
+<div id="point-area"></div>
+<div id="toggle-cancel" data-cancel="0">preventDefault: OFF</div>
+<ul id="debug-area"></ul>
+</body>
+</html>
